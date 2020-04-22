@@ -21,7 +21,7 @@ const App = () => {
       console.log(err);
     });
     const data = await response.json();
-    // console.log(data.hits);
+    console.log(data.hits);
     setRecipes(data.hits);
   };
 
@@ -44,19 +44,23 @@ const App = () => {
           className="search-bar"
           value={search}
           onChange={updateSearch}
+          placeholder="    Choose an ingredient..."
         />
         <button type="submit" className="search-btn">
           Search
         </button>
       </form>
-      {recipes.map((recipe) => (
-        <Recipe
-          key={recipe.recipe.label}
-          title={recipe.recipe.label}
-          calories={recipe.recipe.calories}
-          image={recipe.recipe.image}
-        />
-      ))}
+      <div className="recipes">
+        {recipes.map((recipe) => (
+          <Recipe
+            key={recipe.recipe.label}
+            title={recipe.recipe.label}
+            calories={recipe.recipe.calories.toFixed(2)}
+            image={recipe.recipe.image}
+            ingredients={recipe.recipe.ingredients}
+          />
+        ))}
+      </div>
     </div>
   );
 };
