@@ -23,6 +23,9 @@ const App = () => {
     });
     const data = await response.json();
     console.log(data.hits);
+    if ((data.hits == 0)) {
+      alert("Choose a different ingredient");
+    }
     setRecipes(data.hits);
   };
 
